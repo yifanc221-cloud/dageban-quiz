@@ -1,208 +1,107 @@
-<title>你是哪种搭子</title>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>你是哪种搭子</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
 <style>
-:root {
-  --g900: #1A3A2B;
-  --g700: #2C6249;
-  --g500: #5A9A78;
-  --g200: #B8D9C6;
-  --g100: #D6EDDF;
-  --g50:  #EFF6F0;
-  --accent: #F4A426;
-  --accent-pale: #FEF3DD;
-  --text: #1A2E23;
-  --text-muted: #6B8C7A;
-  --card: #FFFFFF;
-  --surface: #F5F9F5;
-  --border: #D8EDE2;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --g900: #A8D5BA;
-    --g700: #7DC49A;
-    --g500: #5A9A78;
-    --g200: #2A4A38;
-    --g100: #1E3829;
-    --g50:  #141F18;
-    --accent: #F4A426;
-    --accent-pale: #2E2310;
-    --text: #E8F4ED;
-    --text-muted: #7AAF8C;
-    --card: #1C2E22;
-    --surface: #141F18;
-    --border: #2A4538;
-  }
-}
-:root[data-theme="dark"] {
-  --g900: #A8D5BA;
-  --g700: #7DC49A;
-  --g500: #5A9A78;
-  --g200: #2A4A38;
-  --g100: #1E3829;
-  --g50:  #141F18;
-  --accent: #F4A426;
-  --accent-pale: #2E2310;
-  --text: #E8F4ED;
-  --text-muted: #7AAF8C;
-  --card: #1C2E22;
-  --surface: #141F18;
-  --border: #2A4538;
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
 body {
-  background: var(--surface);
-  color: var(--text);
+  background: #EFF6F0;
   font-family: 'Noto Sans SC', system-ui, sans-serif;
+  color: #1A2E23;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 24px 16px 48px;
+  padding: 20px 16px 48px;
 }
 
-/* NAV */
 .nav {
-  width: 100%;
-  max-width: 480px;
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
 }
-.logo-dots {
-  display: flex;
-  gap: 5px;
-}
-.logo-dots span {
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  background: var(--g700);
-  display: block;
-}
-.logo-dots span:last-child { background: var(--g500); }
-.logo-text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1;
-  gap: 2px;
-}
-.logo-cn {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: 0.02em;
-}
-.logo-en {
-  font-size: 9px;
-  letter-spacing: 0.15em;
-  color: var(--text-muted);
-  text-transform: uppercase;
-}
+.dots { display: flex; gap: 5px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; background: #2C6249; }
+.dot2 { background: #5A9A78; }
+.brand-cn { font-size: 15px; font-weight: 700; color: #1A2E23; }
+.brand-en { font-size: 9px; letter-spacing: 0.15em; color: #6B8C7A; text-transform: uppercase; display: block; }
 
-/* CARD */
 .card {
-  background: var(--card);
+  background: #fff;
   border-radius: 20px;
   width: 100%;
   max-width: 480px;
-  padding: 36px 32px;
-  box-shadow: 0 2px 24px rgba(44,98,73,0.08);
-  position: relative;
-  overflow: hidden;
+  margin: 0 auto;
+  padding: 28px 24px;
+  box-shadow: 0 4px 24px rgba(44,98,73,0.10);
 }
-.card::before {
-  content: '';
-  position: absolute;
-  top: -40px; right: -40px;
-  width: 120px; height: 120px;
-  border-radius: 50%;
-  background: var(--g100);
-  opacity: 0.6;
-  pointer-events: none;
-  z-index: 0;
-}
-.card > * { position: relative; z-index: 1; }
 
-/* WELCOME */
+/* TAG */
 .tag {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: var(--g50);
-  color: var(--g700);
+  background: #EFF6F0;
+  color: #2C6249;
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: 0.08em;
   padding: 5px 12px;
   border-radius: 100px;
-  border: 1px solid var(--g100);
-  margin-bottom: 20px;
+  border: 1px solid #D6EDDF;
+  margin-bottom: 18px;
 }
-.tag-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--accent);
-}
+.tag-dot { width: 6px; height: 6px; border-radius: 50%; background: #F4A426; }
 
-.welcome-title {
+.title {
   font-family: 'Noto Serif SC', serif;
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 700;
-  color: var(--text);
-  line-height: 1.3;
-  text-wrap: balance;
+  line-height: 1.35;
+  color: #1A2E23;
   margin-bottom: 10px;
 }
-.welcome-sub {
+.sub {
   font-size: 14px;
-  color: var(--text-muted);
+  color: #6B8C7A;
   line-height: 1.7;
-  margin-bottom: 28px;
+  margin-bottom: 22px;
 }
-
-.types-row {
+.chips {
   display: flex;
-  gap: 6px;
   flex-wrap: wrap;
-  margin-bottom: 28px;
+  gap: 6px;
+  margin-bottom: 22px;
 }
-.type-chip {
-  padding: 6px 14px;
+.chip {
+  padding: 6px 13px;
+  background: #EFF6F0;
+  color: #2C6249;
   border-radius: 100px;
   font-size: 12px;
   font-weight: 500;
-  background: var(--g50);
-  color: var(--g700);
-  border: 1px solid var(--g100);
+  border: 1px solid #D6EDDF;
 }
-
 .hint {
   font-size: 12px;
-  color: var(--text-muted);
-  margin-bottom: 24px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.hint::before {
-  content: '';
-  display: inline-block;
-  width: 4px; height: 4px;
-  border-radius: 50%;
-  background: var(--accent);
+  color: #6B8C7A;
+  margin-bottom: 22px;
+  padding-left: 10px;
+  border-left: 3px solid #F4A426;
 }
 
-.btn-start {
+/* BUTTON */
+.btn-main {
+  display: block;
   width: 100%;
   padding: 16px;
-  background: var(--g700);
+  background: #2C6249;
   color: #fff;
   border: none;
   border-radius: 14px;
@@ -210,445 +109,330 @@ body {
   font-weight: 700;
   font-family: 'Noto Sans SC', sans-serif;
   cursor: pointer;
-  transition: background 0.2s, transform 0.15s;
+  text-align: center;
   letter-spacing: 0.05em;
+  -webkit-appearance: none;
+  appearance: none;
+  touch-action: manipulation;
 }
-.btn-start:hover { background: var(--g900); transform: translateY(-1px); }
-.btn-start:active { transform: translateY(0); }
+.btn-main:active { background: #1A3A2B; }
 
-/* QUIZ */
-.progress-bar {
-  height: 3px;
-  background: var(--g100);
+.btn-outline {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background: #fff;
+  color: #2C6249;
+  border: 1.5px solid #B8D9C6;
+  border-radius: 14px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Noto Sans SC', sans-serif;
+  cursor: pointer;
+  text-align: center;
+  -webkit-appearance: none;
+  appearance: none;
+  touch-action: manipulation;
+}
+.btn-outline:active { background: #EFF6F0; }
+
+/* PROGRESS */
+.progress-wrap {
+  height: 4px;
+  background: #D6EDDF;
   border-radius: 2px;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
   overflow: hidden;
 }
-.progress-fill {
+.progress-bar {
   height: 100%;
-  background: var(--g700);
+  background: #2C6249;
   border-radius: 2px;
-  transition: width 0.4s cubic-bezier(.4,0,.2,1);
+  transition: width 0.3s ease;
 }
-
-.q-num {
+.q-label {
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  margin-bottom: 10px;
+  color: #6B8C7A;
+  margin-bottom: 8px;
 }
 .q-text {
   font-family: 'Noto Serif SC', serif;
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 600;
   line-height: 1.5;
-  color: var(--text);
-  text-wrap: balance;
-  margin-bottom: 24px;
+  color: #1A2E23;
+  margin-bottom: 20px;
 }
-
-.options {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.option {
+.options { display: flex; flex-direction: column; gap: 10px; }
+.opt {
   display: flex;
   align-items: flex-start;
   gap: 12px;
   padding: 14px 16px;
   border-radius: 12px;
-  border: 1.5px solid var(--border);
-  background: transparent;
+  border: 1.5px solid #D8EDE2;
+  background: #fff;
   cursor: pointer;
   text-align: left;
   font-family: 'Noto Sans SC', sans-serif;
   font-size: 14px;
   line-height: 1.5;
-  color: var(--text);
-  transition: border-color 0.15s, background 0.15s, transform 0.12s;
-  position: relative;
+  color: #1A2E23;
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  touch-action: manipulation;
 }
-.option:hover {
-  border-color: var(--g500);
-  background: var(--g50);
-  transform: translateX(3px);
-}
-.option-letter {
+.opt:active { background: #EFF6F0; border-color: #5A9A78; }
+.opt.picked { background: #EFF6F0; border-color: #2C6249; }
+.opt-letter {
   flex-shrink: 0;
-  width: 24px; height: 24px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  border: 1.5px solid var(--border);
+  border: 1.5px solid #D8EDE2;
+  font-size: 11px;
+  font-weight: 700;
+  color: #6B8C7A;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--text-muted);
-  transition: background 0.15s, border-color 0.15s, color 0.15s;
   margin-top: 1px;
 }
-.option.selected {
-  border-color: var(--g700);
-  background: var(--g50);
-}
-.option.selected .option-letter {
-  background: var(--g700);
-  border-color: var(--g700);
+.opt.picked .opt-letter {
+  background: #2C6249;
+  border-color: #2C6249;
   color: #fff;
 }
 
 /* RESULT */
-.result-emoji {
-  font-size: 48px;
-  margin-bottom: 16px;
-  display: block;
-}
-.result-label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  color: var(--g500);
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-.result-type {
-  font-family: 'Noto Serif SC', serif;
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 6px;
-}
-.result-tag {
+.r-label { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: #5A9A78; margin-bottom: 6px; }
+.r-type { font-family: 'Noto Serif SC', serif; font-size: 30px; font-weight: 700; color: #1A2E23; margin-bottom: 6px; }
+.r-badge {
   display: inline-block;
-  background: var(--accent-pale);
+  background: #FEF3DD;
   color: #B07800;
   font-size: 12px;
   font-weight: 500;
   padding: 4px 12px;
   border-radius: 100px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
-.result-desc {
-  font-size: 15px;
+.r-desc {
+  font-size: 14px;
   line-height: 1.8;
-  color: var(--text-muted);
-  margin-bottom: 28px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--border);
+  color: #6B8C7A;
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #D8EDE2;
 }
-.result-traits {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 28px;
-}
-.trait-pill {
-  padding: 6px 14px;
-  background: var(--g50);
-  color: var(--g700);
+.r-traits { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+.trait {
+  padding: 5px 12px;
+  background: #EFF6F0;
+  color: #2C6249;
   border-radius: 100px;
   font-size: 12px;
   font-weight: 500;
-  border: 1px solid var(--g100);
+  border: 1px solid #D6EDDF;
 }
-
-.qr-section {
-  background: var(--surface);
-  border-radius: 14px;
-  padding: 20px;
+.qr-row {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 20px;
+  gap: 14px;
+  background: #F5F9F5;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
 }
 .qr-box {
   flex-shrink: 0;
-  width: 80px; height: 80px;
+  width: 76px;
+  height: 76px;
   background: #fff;
   border-radius: 8px;
+  padding: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4px;
 }
-.qr-box canvas, .qr-box img { width: 100% !important; height: 100% !important; }
-.qr-info { flex: 1; }
-.qr-title {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 4px;
-}
-.qr-sub {
-  font-size: 11px;
-  color: var(--text-muted);
-  line-height: 1.5;
-}
-
-.btn-retry {
-  width: 100%;
-  padding: 14px;
-  background: transparent;
-  color: var(--g700);
-  border: 1.5px solid var(--g200);
-  border-radius: 14px;
-  font-size: 14px;
-  font-weight: 500;
-  font-family: 'Noto Sans SC', sans-serif;
-  cursor: pointer;
-  transition: background 0.15s, border-color 0.15s;
-  letter-spacing: 0.04em;
-}
-.btn-retry:hover { background: var(--g50); border-color: var(--g500); }
+.qr-box canvas, .qr-box img { width: 68px !important; height: 68px !important; }
+.qr-title { font-size: 13px; font-weight: 700; color: #1A2E23; margin-bottom: 3px; }
+.qr-sub { font-size: 11px; color: #6B8C7A; line-height: 1.5; }
 
 /* SCREENS */
 .screen { display: none; }
-.screen.active { display: block; }
-
-/* slide-in animation */
-@keyframes slideIn {
-  from { opacity: 0; transform: translateX(18px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-.screen.active { animation: slideIn 0.28s ease-out; }
-
-@media (prefers-reduced-motion: reduce) {
-  .screen.active { animation: none; }
-  .option:hover { transform: none; }
-}
-
-@media (max-width: 520px) {
-  body { padding: 16px 12px 36px; }
-  .nav { margin-bottom: 16px; }
-  .card { padding: 24px 20px; border-radius: 16px; }
-  .welcome-title { font-size: 22px; }
-  .q-text { font-size: 17px; }
-  .result-type { font-size: 26px; }
-  .btn-start { font-size: 15px; padding: 14px; }
-  .option { font-size: 13px; padding: 12px 14px; }
-  .qr-section { flex-direction: column; align-items: flex-start; gap: 12px; }
-}
+.screen.on { display: block; }
 </style>
+</head>
+<body>
 
-<!-- NAV -->
 <nav class="nav">
-  <div class="logo-dots"><span></span><span></span></div>
-  <div class="logo-text">
-    <span class="logo-cn">搭个伴</span>
-    <span class="logo-en">BuddyUp</span>
+  <div class="dots"><div class="dot"></div><div class="dot dot2"></div></div>
+  <div>
+    <span class="brand-cn">搭个伴</span>
+    <span class="brand-en">BuddyUp</span>
   </div>
 </nav>
 
-<!-- CARD -->
 <div class="card">
 
-  <!-- WELCOME -->
-  <div id="screen-welcome" class="screen active">
+  <!-- 欢迎页 -->
+  <div id="s-welcome" class="screen on">
     <div class="tag"><span class="tag-dot"></span>搭子类型测试</div>
-    <h1 class="welcome-title">30 秒测测<br>你是哪种搭子？</h1>
-    <p class="welcome-sub">不用想太久，凭第一反应选择。<br>5 道题，测出你的同城连接方式。</p>
-    <div class="types-row">
-      <span class="type-chip">🍜 饭搭子</span>
-      <span class="type-chip">🏃 运动搭子</span>
-      <span class="type-chip">🌅 周末搭子</span>
-      <span class="type-chip">🐾 宠物搭子</span>
-      <span class="type-chip">✨ 缘分搭子</span>
+    <h1 class="title">30 秒测测<br>你是哪种搭子？</h1>
+    <p class="sub">不用想太久，凭第一反应选择。<br>5 道题，测出你的同城连接方式。</p>
+    <div class="chips">
+      <span class="chip">🍜 饭搭子</span>
+      <span class="chip">🏃 运动搭子</span>
+      <span class="chip">🌅 周末搭子</span>
+      <span class="chip">🐾 宠物搭子</span>
+      <span class="chip">✨ 缘分搭子</span>
     </div>
     <p class="hint">答完即领取一张专属搭子身份卡</p>
-    <button class="btn-start" onclick="startQuiz()">开始测试 →</button>
+    <button type="button" class="btn-main" onclick="startQuiz()">开始测试 →</button>
   </div>
 
-  <!-- QUIZ QUESTIONS (rendered by JS) -->
-  <div id="screen-quiz" class="screen">
-    <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
-    <div class="q-num" id="q-num"></div>
-    <div class="q-text" id="q-text"></div>
-    <div class="options" id="options"></div>
+  <!-- 题目页 -->
+  <div id="s-quiz" class="screen">
+    <div class="progress-wrap"><div class="progress-bar" id="pbar" style="width:0%"></div></div>
+    <div class="q-label" id="qlabel"></div>
+    <div class="q-text" id="qtext"></div>
+    <div class="options" id="opts"></div>
   </div>
 
-  <!-- RESULT -->
-  <div id="screen-result" class="screen">
-    <div class="result-label">你的搭子身份</div>
-    <div class="result-type" id="result-type"></div>
-    <div class="result-tag" id="result-tag"></div>
-    <div class="result-desc" id="result-desc"></div>
-    <div class="result-traits" id="result-traits"></div>
-    <div class="qr-section">
-      <div class="qr-box" id="qr-container"></div>
-      <div class="qr-info">
+  <!-- 结果页 -->
+  <div id="s-result" class="screen">
+    <div class="r-label">你的搭子身份</div>
+    <div class="r-type" id="rtype"></div>
+    <div class="r-badge" id="rbadge"></div>
+    <div class="r-desc" id="rdesc"></div>
+    <div class="r-traits" id="rtraits"></div>
+    <div class="qr-row">
+      <div class="qr-box" id="qrbox"></div>
+      <div>
         <div class="qr-title">把身份卡带走</div>
         <div class="qr-sub">扫码分享测试<br>找到同类搭子</div>
       </div>
     </div>
-    <button class="btn-retry" onclick="restart()">再测一次</button>
+    <button type="button" class="btn-outline" onclick="goWelcome()">再测一次</button>
   </div>
 
 </div>
 
 <script>
-const questions = [
-  {
-    text: "周末突然空出来，你最想做什么？",
-    options: [
-      { text: "约几个人吃顿好的，随便聊聊", type: "饭搭子" },
-      { text: "约人去运动，打球跑步都行", type: "运动搭子" },
-      { text: "找人出去逛，展览市集或者公园", type: "周末搭子" },
-      { text: "带上宠物，找有同款的人遛一遛", type: "宠物搭子" },
-      { text: "随缘，先看看有没有有趣的人", type: "缘分搭子" }
-    ]
-  },
-  {
-    text: "你认识新朋友最自然的方式是？",
-    options: [
-      { text: "一顿饭就能聊开，吃什么不重要", type: "饭搭子" },
-      { text: "一起运动最快，挥汗就熟了", type: "运动搭子" },
-      { text: "一起参加活动或者逛逛，自然就近了", type: "周末搭子" },
-      { text: "聊共同爱好，慢慢发现更多共鸣", type: "宠物搭子" },
-      { text: "先线上聊着，感觉对了再见面", type: "缘分搭子" }
-    ]
-  },
-  {
-    text: "你最怕哪种社交尴尬？",
-    options: [
-      { text: "一个人吃饭，太孤独了", type: "饭搭子" },
-      { text: "运动没人督促，坚持不下去", type: "运动搭子" },
-      { text: "周末无聊但不知道找谁", type: "周末搭子" },
-      { text: "爱好太小众，根本没人懂", type: "宠物搭子" },
-      { text: "第一次见面不知道聊什么", type: "缘分搭子" }
-    ]
-  },
-  {
-    text: "今天下午空了，你最想要的搭子局是？",
-    options: [
-      { text: "去一家没吃过的餐厅探店", type: "饭搭子" },
-      { text: "约人打羽毛球或者跑步", type: "运动搭子" },
-      { text: "逛个展览或者周末集市", type: "周末搭子" },
-      { text: "找个一起遛宠物或聊爱好的人", type: "宠物搭子" },
-      { text: "无主题闲逛，聊聊天就好", type: "缘分搭子" }
-    ]
-  },
-  {
-    text: "你希望搭个伴帮你解决什么？",
-    options: [
-      { text: "一个人吃饭太孤独，想有人陪", type: "饭搭子" },
-      { text: "运动缺个督促的伙伴", type: "运动搭子" },
-      { text: "周末不知道去哪，也不知道找谁", type: "周末搭子" },
-      { text: "想认识有共同爱好的同城朋友", type: "宠物搭子" },
-      { text: "想在这座城市多认识几个人", type: "缘分搭子" }
-    ]
-  }
+var qs = [
+  { t:"周末突然空出来，你最想做什么？", opts:[
+    {s:"约几个人吃顿好的，随便聊聊",k:"饭"},
+    {s:"约人去运动，打球跑步都行",k:"动"},
+    {s:"找人出去逛，展览市集或公园",k:"周"},
+    {s:"带上宠物，找有同款的人遛遛",k:"宠"},
+    {s:"随缘，先看看有没有有趣的人",k:"缘"}
+  ]},
+  { t:"认识新朋友，你最自然的方式是？", opts:[
+    {s:"从一顿饭开始，吃什么不重要",k:"饭"},
+    {s:"一起运动最快，挥汗就熟了",k:"动"},
+    {s:"一起参加活动或逛逛，自然就近",k:"周"},
+    {s:"聊共同爱好，慢慢发现更多共鸣",k:"宠"},
+    {s:"先线上聊，感觉对了再见面",k:"缘"}
+  ]},
+  { t:"你最怕哪种社交尴尬？", opts:[
+    {s:"一个人吃饭，太孤独了",k:"饭"},
+    {s:"运动没人督促，坚持不下去",k:"动"},
+    {s:"周末无聊但不知道找谁",k:"周"},
+    {s:"爱好太小众，根本没人懂",k:"宠"},
+    {s:"第一次见面不知道聊什么",k:"缘"}
+  ]},
+  { t:"今天下午空了，你最想要的搭子局？", opts:[
+    {s:"去一家没吃过的餐厅探店",k:"饭"},
+    {s:"约人打羽毛球或跑步",k:"动"},
+    {s:"逛个展览或周末集市",k:"周"},
+    {s:"找人一起遛宠物或聊爱好",k:"宠"},
+    {s:"无主题闲逛，聊聊天就好",k:"缘"}
+  ]},
+  { t:"你希望搭个伴帮你解决什么？", opts:[
+    {s:"一个人吃饭太孤独，想有人陪",k:"饭"},
+    {s:"运动缺个督促的伙伴",k:"动"},
+    {s:"周末不知道去哪也不知找谁",k:"周"},
+    {s:"想认识有共同爱好的同城朋友",k:"宠"},
+    {s:"想在这座城市多认识几个人",k:"缘"}
+  ]}
 ];
 
-const results = {
-  "饭搭子": {
-    emoji: "🍜",
-    tag: "桌边社交型",
-    desc: "你喜欢从一顿饭开始认识人。先聊吃什么，再聊剩下的生活——饭桌上的你，最松弛，也最真实。你不需要特别的理由，一句"一起吃饭吗"就能开始一段好关系。",
-    traits: ["探店达人", "话题制造机", "气氛担当", "包容力强"]
-  },
-  "运动搭子": {
-    emoji: "🏃",
-    tag: "行动派社交型",
-    desc: "你觉得一起流汗是最好的破冰方式。比起聊天，你更愿意用行动建立连接——打完一场球，关系自然就近了。你需要的不是闲聊的伴，而是一个能让你动起来的人。",
-    traits: ["自律自驱", "行动力强", "耐力型选手", "陪伴出真情"]
-  },
-  "周末搭子": {
-    emoji: "🌅",
-    tag: "生活品质型",
-    desc: "你需要有人把周末用得更有意思。你喜欢探索城市里那些值得去的地方，不一定深聊，但有人同行就会完全不同。你是那种把"随便逛逛"变成最好记忆的人。",
-    traits: ["探索欲强", "生活感好", "随性自在", "质感搭子"]
-  },
-  "宠物搭子": {
-    emoji: "🐾",
-    tag: "共鸣深交型",
-    desc: "你更喜欢从共同爱好出发，一点一点建立真正的连接。可能是宠物，可能是某个小众爱好，你不着急，但一旦找到共鸣就走得很近。你要的是懂你的人，不只是凑数的伴。",
-    traits: ["爱好鲜明", "细腻共情", "慢热真诚", "圈子精选"]
-  },
-  "缘分搭子": {
-    emoji: "✨",
-    tag: "随缘深情型",
-    desc: "你不着急定义关系，先认识这座城市里有趣的人。你对人有天然的好奇，愿意给陌生关系一个机会，也知道真正的缘分急不来。你找的不是搭子，是在对的时间遇见对的人。",
-    traits: ["开放好奇", "随遇而安", "深情隐藏", "缘起有意思"]
-  }
+var types = {
+  饭:{ name:"饭搭子", badge:"桌边社交型", desc:"你喜欢从一顿饭开始认识人。先聊吃什么，再聊剩下的生活——饭桌上的你，最松弛，也最真实。一句"一起吃饭吗"就能开始一段好关系。", traits:["探店达人","话题制造机","气氛担当","包容力强"] },
+  动:{ name:"运动搭子", badge:"行动派社交型", desc:"你觉得一起流汗是最好的破冰方式。比起聊天，你更愿意用行动建立连接——打完一场球，关系自然就近了。你要的是能让你动起来的人。", traits:["自律自驱","行动力强","耐力型选手","陪伴出真情"] },
+  周:{ name:"周末搭子", badge:"生活品质型", desc:"你需要有人把周末用得更有意思。你喜欢探索城市里那些值得去的地方，不一定深聊，但有人同行就会完全不同。你是把"随便逛逛"变成最好记忆的人。", traits:["探索欲强","生活感好","随性自在","质感搭子"] },
+  宠:{ name:"宠物搭子", badge:"共鸣深交型", desc:"你更喜欢从共同爱好出发，慢慢建立真正的连接。可能是宠物，可能是某个小众爱好，你不着急，但一旦找到共鸣就走得很近。你要的是懂你的人。", traits:["爱好鲜明","细腻共情","慢热真诚","圈子精选"] },
+  缘:{ name:"缘分搭子", badge:"随缘深情型", desc:"你不着急定义关系，先认识这座城市里有趣的人。你对人有天然的好奇，愿意给陌生关系一个机会。你找的不是搭子，是在对的时间遇见对的人。", traits:["开放好奇","随遇而安","深情隐藏","缘起有意思"] }
 };
 
-let currentQ = 0;
-let scores = {};
+var cur = 0, scores = {};
+
+function show(id) {
+  document.querySelectorAll('.screen').forEach(function(s){ s.className='screen'; });
+  document.getElementById(id).className = 'screen on';
+}
 
 function startQuiz() {
-  currentQ = 0;
-  scores = {};
-  showQuestion();
-  setScreen('quiz');
+  cur = 0; scores = {};
+  renderQ();
+  show('s-quiz');
 }
 
-function showQuestion() {
-  const q = questions[currentQ];
-  document.getElementById('q-num').textContent = `Q${currentQ + 1} / ${questions.length}`;
-  document.getElementById('q-text').textContent = q.text;
-  document.getElementById('progress').style.width = ((currentQ / questions.length) * 100) + '%';
-
-  const opts = document.getElementById('options');
-  opts.innerHTML = '';
-  const letters = ['A','B','C','D','E'];
-  q.options.forEach((opt, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'option';
-    btn.innerHTML = `<span class="option-letter">${letters[i]}</span><span>${opt.text}</span>`;
-    btn.onclick = () => choose(opt.type, btn);
-    opts.appendChild(btn);
+function renderQ() {
+  var q = qs[cur];
+  document.getElementById('pbar').style.width = (cur/qs.length*100)+'%';
+  document.getElementById('qlabel').textContent = 'Q'+(cur+1)+' / '+qs.length;
+  document.getElementById('qtext').textContent = q.t;
+  var letters = ['A','B','C','D','E'];
+  var html = '';
+  q.opts.forEach(function(o,i){
+    html += '<button type="button" class="opt" onclick="pick(\''+o.k+'\',this)">'
+      +'<span class="opt-letter">'+letters[i]+'</span>'
+      +'<span>'+o.s+'</span>'
+      +'</button>';
   });
+  document.getElementById('opts').innerHTML = html;
 }
 
-function choose(type, btn) {
-  document.querySelectorAll('.option').forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
-  scores[type] = (scores[type] || 0) + 1;
-  setTimeout(() => {
-    currentQ++;
-    if (currentQ < questions.length) {
-      showQuestion();
-    } else {
-      showResult();
-    }
-  }, 380);
+function pick(k, btn) {
+  document.querySelectorAll('.opt').forEach(function(b){ b.className='opt'; });
+  btn.className = 'opt picked';
+  scores[k] = (scores[k]||0)+1;
+  setTimeout(function(){
+    cur++;
+    if(cur < qs.length){ renderQ(); }
+    else { showResult(); }
+  }, 350);
 }
 
 function showResult() {
-  document.getElementById('progress').style.width = '100%';
-  const winner = Object.entries(scores).sort((a,b) => b[1]-a[1])[0][0];
-  const r = results[winner];
-  document.getElementById('result-type').textContent = winner;
-  document.getElementById('result-tag').textContent = r.tag;
-  document.getElementById('result-desc').textContent = r.desc;
-
-  const traitsEl = document.getElementById('result-traits');
-  traitsEl.innerHTML = r.traits.map(t => `<span class="trait-pill">${t}</span>`).join('');
-
-  // QR code
-  const qrEl = document.getElementById('qr-container');
+  var winner = Object.keys(scores).sort(function(a,b){ return scores[b]-scores[a]; })[0];
+  var r = types[winner];
+  document.getElementById('rtype').textContent = r.name;
+  document.getElementById('rbadge').textContent = r.badge;
+  document.getElementById('rdesc').textContent = r.desc;
+  document.getElementById('rtraits').innerHTML = r.traits.map(function(t){
+    return '<span class="trait">'+t+'</span>';
+  }).join('');
+  var qrEl = document.getElementById('qrbox');
   qrEl.innerHTML = '';
-  new QRCode(qrEl, {
-    text: window.location.href,
-    width: 72,
-    height: 72,
-    colorDark: '#2C6249',
-    colorLight: '#FFFFFF',
-    correctLevel: QRCode.CorrectLevel.M
-  });
-
-  setScreen('result');
+  try {
+    new QRCode(qrEl, {
+      text: window.location.href,
+      width: 68, height: 68,
+      colorDark: '#2C6249',
+      colorLight: '#FFFFFF',
+      correctLevel: QRCode.CorrectLevel.M
+    });
+  } catch(e) {}
+  show('s-result');
 }
 
-function restart() {
-  setScreen('welcome');
-}
-
-function setScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById('screen-' + id).classList.add('active');
-}
+function goWelcome(){ show('s-welcome'); }
 </script>
+</body>
+</html>
