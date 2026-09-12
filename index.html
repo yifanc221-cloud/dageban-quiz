@@ -2,287 +2,64 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>你是哪种搭子</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-
-body {
-  background: #EFF6F0;
-  font-family: 'Noto Sans SC', system-ui, sans-serif;
-  color: #1A2E23;
-  min-height: 100vh;
-  padding: 20px 16px 48px;
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 20px;
-  max-width: 480px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.dots { display: flex; gap: 5px; }
-.dot { width: 10px; height: 10px; border-radius: 50%; background: #2C6249; }
-.dot2 { background: #5A9A78; }
-.brand-cn { font-size: 15px; font-weight: 700; color: #1A2E23; }
-.brand-en { font-size: 9px; letter-spacing: 0.15em; color: #6B8C7A; text-transform: uppercase; display: block; }
-
-.card {
-  background: #fff;
-  border-radius: 20px;
-  width: 100%;
-  max-width: 480px;
-  margin: 0 auto;
-  padding: 28px 24px;
-  box-shadow: 0 4px 24px rgba(44,98,73,0.10);
-}
-
-/* TAG */
-.tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: #EFF6F0;
-  color: #2C6249;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  padding: 5px 12px;
-  border-radius: 100px;
-  border: 1px solid #D6EDDF;
-  margin-bottom: 18px;
-}
-.tag-dot { width: 6px; height: 6px; border-radius: 50%; background: #F4A426; }
-
-.title {
-  font-family: 'Noto Serif SC', serif;
-  font-size: 26px;
-  font-weight: 700;
-  line-height: 1.35;
-  color: #1A2E23;
-  margin-bottom: 10px;
-}
-.sub {
-  font-size: 14px;
-  color: #6B8C7A;
-  line-height: 1.7;
-  margin-bottom: 22px;
-}
-.chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 22px;
-}
-.chip {
-  padding: 6px 13px;
-  background: #EFF6F0;
-  color: #2C6249;
-  border-radius: 100px;
-  font-size: 12px;
-  font-weight: 500;
-  border: 1px solid #D6EDDF;
-}
-.hint {
-  font-size: 12px;
-  color: #6B8C7A;
-  margin-bottom: 22px;
-  padding-left: 10px;
-  border-left: 3px solid #F4A426;
-}
-
-/* BUTTON */
-.btn-main {
-  display: block;
-  width: 100%;
-  padding: 16px;
-  background: #2C6249;
-  color: #fff;
-  border: none;
-  border-radius: 14px;
-  font-size: 16px;
-  font-weight: 700;
-  font-family: 'Noto Sans SC', sans-serif;
-  cursor: pointer;
-  text-align: center;
-  letter-spacing: 0.05em;
-  -webkit-appearance: none;
-  appearance: none;
-  touch-action: manipulation;
-}
-.btn-main:active { background: #1A3A2B; }
-
-.btn-outline {
-  display: block;
-  width: 100%;
-  padding: 14px;
-  background: #fff;
-  color: #2C6249;
-  border: 1.5px solid #B8D9C6;
-  border-radius: 14px;
-  font-size: 14px;
-  font-weight: 500;
-  font-family: 'Noto Sans SC', sans-serif;
-  cursor: pointer;
-  text-align: center;
-  -webkit-appearance: none;
-  appearance: none;
-  touch-action: manipulation;
-}
-.btn-outline:active { background: #EFF6F0; }
-
-/* PROGRESS */
-.progress-wrap {
-  height: 4px;
-  background: #D6EDDF;
-  border-radius: 2px;
-  margin-bottom: 24px;
-  overflow: hidden;
-}
-.progress-bar {
-  height: 100%;
-  background: #2C6249;
-  border-radius: 2px;
-  transition: width 0.3s ease;
-}
-.q-label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: #6B8C7A;
-  margin-bottom: 8px;
-}
-.q-text {
-  font-family: 'Noto Serif SC', serif;
-  font-size: 19px;
-  font-weight: 600;
-  line-height: 1.5;
-  color: #1A2E23;
-  margin-bottom: 20px;
-}
-.options { display: flex; flex-direction: column; gap: 10px; }
-.opt {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 14px 16px;
-  border-radius: 12px;
-  border: 1.5px solid #D8EDE2;
-  background: #fff;
-  cursor: pointer;
-  text-align: left;
-  font-family: 'Noto Sans SC', sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
-  color: #1A2E23;
-  width: 100%;
-  -webkit-appearance: none;
-  appearance: none;
-  touch-action: manipulation;
-}
-.opt:active { background: #EFF6F0; border-color: #5A9A78; }
-.opt.picked { background: #EFF6F0; border-color: #2C6249; }
-.opt-letter {
-  flex-shrink: 0;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  border: 1.5px solid #D8EDE2;
-  font-size: 11px;
-  font-weight: 700;
-  color: #6B8C7A;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 1px;
-}
-.opt.picked .opt-letter {
-  background: #2C6249;
-  border-color: #2C6249;
-  color: #fff;
-}
-
-/* RESULT */
-.r-label { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: #5A9A78; margin-bottom: 6px; }
-.r-type { font-family: 'Noto Serif SC', serif; font-size: 30px; font-weight: 700; color: #1A2E23; margin-bottom: 6px; }
-.r-badge {
-  display: inline-block;
-  background: #FEF3DD;
-  color: #B07800;
-  font-size: 12px;
-  font-weight: 500;
-  padding: 4px 12px;
-  border-radius: 100px;
-  margin-bottom: 18px;
-}
-.r-desc {
-  font-size: 14px;
-  line-height: 1.8;
-  color: #6B8C7A;
-  margin-bottom: 18px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid #D8EDE2;
-}
-.r-traits { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
-.trait {
-  padding: 5px 12px;
-  background: #EFF6F0;
-  color: #2C6249;
-  border-radius: 100px;
-  font-size: 12px;
-  font-weight: 500;
-  border: 1px solid #D6EDDF;
-}
-.qr-row {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  background: #F5F9F5;
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 16px;
-}
-.qr-box {
-  flex-shrink: 0;
-  width: 76px;
-  height: 76px;
-  background: #fff;
-  border-radius: 8px;
-  padding: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.qr-box canvas, .qr-box img { width: 68px !important; height: 68px !important; }
-.qr-title { font-size: 13px; font-weight: 700; color: #1A2E23; margin-bottom: 3px; }
-.qr-sub { font-size: 11px; color: #6B8C7A; line-height: 1.5; }
-
-/* SCREENS */
-.screen { display: none; }
-.screen.on { display: block; }
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:#EFF6F0;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;color:#1A2E23;padding:20px 16px 48px;min-height:100vh}
+.nav{display:flex;align-items:center;gap:8px;margin-bottom:20px;max-width:480px;margin-left:auto;margin-right:auto}
+.dots{display:flex;gap:5px}
+.dot{width:10px;height:10px;border-radius:50%;background:#2C6249}
+.dot2{background:#5A9A78}
+.brand{display:flex;flex-direction:column;gap:1px}
+.brand b{font-size:15px;font-weight:700}
+.brand small{font-size:9px;letter-spacing:.15em;color:#6B8C7A;text-transform:uppercase}
+.card{background:#fff;border-radius:20px;width:100%;max-width:480px;margin:0 auto;padding:28px 24px;box-shadow:0 4px 24px rgba(44,98,73,.10)}
+.tag{display:inline-flex;align-items:center;gap:6px;background:#EFF6F0;color:#2C6249;font-size:11px;font-weight:700;letter-spacing:.08em;padding:5px 12px;border-radius:100px;border:1px solid #D6EDDF;margin-bottom:18px}
+.dot-o{width:6px;height:6px;border-radius:50%;background:#F4A426}
+h1{font-size:26px;font-weight:700;line-height:1.35;color:#1A2E23;margin-bottom:10px}
+.sub{font-size:14px;color:#6B8C7A;line-height:1.7;margin-bottom:22px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:22px}
+.chip{padding:6px 13px;background:#EFF6F0;color:#2C6249;border-radius:100px;font-size:12px;font-weight:500;border:1px solid #D6EDDF}
+.hint{font-size:12px;color:#6B8C7A;margin-bottom:22px;padding-left:10px;border-left:3px solid #F4A426}
+.btn{display:block;width:100%;padding:16px;background:#2C6249;color:#fff;border:none;border-radius:14px;font-size:16px;font-weight:700;font-family:inherit;cursor:pointer;text-align:center;letter-spacing:.05em}
+.btn:active,.btn:focus{background:#1A3A2B;outline:none}
+.btn2{display:block;width:100%;padding:14px;background:#fff;color:#2C6249;border:1.5px solid #B8D9C6;border-radius:14px;font-size:14px;font-weight:500;font-family:inherit;cursor:pointer;text-align:center}
+.btn2:active{background:#EFF6F0}
+.pw{height:4px;background:#D6EDDF;border-radius:2px;margin-bottom:24px;overflow:hidden}
+.pf{height:100%;background:#2C6249;border-radius:2px;transition:width .3s}
+.ql{font-size:11px;font-weight:700;letter-spacing:.12em;color:#6B8C7A;margin-bottom:8px}
+.qt{font-size:19px;font-weight:700;line-height:1.5;color:#1A2E23;margin-bottom:20px}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border-radius:12px;border:1.5px solid #D8EDE2;background:#fff;cursor:pointer;text-align:left;font-family:inherit;font-size:14px;line-height:1.5;color:#1A2E23;width:100%}
+.opt:active{background:#EFF6F0;border-color:#5A9A78}
+.opt.ok{background:#EFF6F0;border-color:#2C6249}
+.ol{flex-shrink:0;width:24px;height:24px;border-radius:50%;border:1.5px solid #D8EDE2;font-size:11px;font-weight:700;color:#6B8C7A;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.opt.ok .ol{background:#2C6249;border-color:#2C6249;color:#fff}
+.rl{font-size:11px;font-weight:700;letter-spacing:.15em;color:#5A9A78;margin-bottom:6px}
+.rt{font-size:30px;font-weight:700;color:#1A2E23;margin-bottom:6px}
+.rb{display:inline-block;background:#FEF3DD;color:#B07800;font-size:12px;font-weight:500;padding:4px 12px;border-radius:100px;margin-bottom:18px}
+.rd{font-size:14px;line-height:1.8;color:#6B8C7A;margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid #D8EDE2}
+.ts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.tr{padding:5px 12px;background:#EFF6F0;color:#2C6249;border-radius:100px;font-size:12px;font-weight:500;border:1px solid #D6EDDF}
+.qrrow{display:flex;align-items:center;gap:14px;background:#F5F9F5;border-radius:12px;padding:16px;margin-bottom:16px}
+.qrbox{flex-shrink:0;width:76px;height:76px;background:#fff;border-radius:8px;padding:4px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#6B8C7A;text-align:center}
+.qrt{font-size:13px;font-weight:700;color:#1A2E23;margin-bottom:3px}
+.qrs{font-size:11px;color:#6B8C7A;line-height:1.5}
+.hidden{display:none}
 </style>
 </head>
 <body>
 
-<nav class="nav">
+<div class="nav">
   <div class="dots"><div class="dot"></div><div class="dot dot2"></div></div>
-  <div>
-    <span class="brand-cn">搭个伴</span>
-    <span class="brand-en">BuddyUp</span>
-  </div>
-</nav>
+  <div class="brand"><b>搭个伴</b><small>BuddyUp</small></div>
+</div>
 
 <div class="card">
-
-  <!-- 欢迎页 -->
-  <div id="s-welcome" class="screen on">
-    <div class="tag"><span class="tag-dot"></span>搭子类型测试</div>
-    <h1 class="title">30 秒测测<br>你是哪种搭子？</h1>
+  <div id="p0">
+    <div class="tag"><span class="dot-o"></span>搭子类型测试</div>
+    <h1>30 秒测测<br>你是哪种搭子？</h1>
     <p class="sub">不用想太久，凭第一反应选择。<br>5 道题，测出你的同城连接方式。</p>
     <div class="chips">
       <span class="chip">🍜 饭搭子</span>
@@ -292,147 +69,139 @@ body {
       <span class="chip">✨ 缘分搭子</span>
     </div>
     <p class="hint">答完即领取一张专属搭子身份卡</p>
-    <button type="button" class="btn-main" onclick="startQuiz()">开始测试 →</button>
+    <button id="startBtn" class="btn">开始测试 →</button>
   </div>
 
-  <!-- 题目页 -->
-  <div id="s-quiz" class="screen">
-    <div class="progress-wrap"><div class="progress-bar" id="pbar" style="width:0%"></div></div>
-    <div class="q-label" id="qlabel"></div>
-    <div class="q-text" id="qtext"></div>
-    <div class="options" id="opts"></div>
+  <div id="p1" class="hidden">
+    <div class="pw"><div id="pf" class="pf" style="width:0%"></div></div>
+    <div id="ql" class="ql"></div>
+    <div id="qt" class="qt"></div>
+    <div id="opts" class="opts"></div>
   </div>
 
-  <!-- 结果页 -->
-  <div id="s-result" class="screen">
-    <div class="r-label">你的搭子身份</div>
-    <div class="r-type" id="rtype"></div>
-    <div class="r-badge" id="rbadge"></div>
-    <div class="r-desc" id="rdesc"></div>
-    <div class="r-traits" id="rtraits"></div>
-    <div class="qr-row">
-      <div class="qr-box" id="qrbox"></div>
-      <div>
-        <div class="qr-title">把身份卡带走</div>
-        <div class="qr-sub">扫码分享测试<br>找到同类搭子</div>
-      </div>
+  <div id="p2" class="hidden">
+    <div class="rl">你的搭子身份</div>
+    <div id="rt" class="rt"></div>
+    <div id="rb" class="rb"></div>
+    <div id="rd" class="rd"></div>
+    <div id="ts" class="ts"></div>
+    <div class="qrrow">
+      <div id="qrbox" class="qrbox">扫码<br>分享</div>
+      <div><div class="qrt">把身份卡带走</div><div class="qrs">扫码分享测试<br>找到同类搭子</div></div>
     </div>
-    <button type="button" class="btn-outline" onclick="goWelcome()">再测一次</button>
+    <button id="retryBtn" class="btn2">再测一次</button>
   </div>
-
 </div>
 
 <script>
-var qs = [
-  { t:"周末突然空出来，你最想做什么？", opts:[
-    {s:"约几个人吃顿好的，随便聊聊",k:"饭"},
-    {s:"约人去运动，打球跑步都行",k:"动"},
-    {s:"找人出去逛，展览市集或公园",k:"周"},
-    {s:"带上宠物，找有同款的人遛遛",k:"宠"},
-    {s:"随缘，先看看有没有有趣的人",k:"缘"}
+var Q=[
+  {t:"周末突然空出来，你最想做什么？",o:[
+    ["约几个人吃顿好的，随便聊聊","fan"],
+    ["约人去运动，打球跑步都行","yun"],
+    ["找人出去逛，展览市集或公园","zhou"],
+    ["带上宠物，找有同款的人遛遛","chong"],
+    ["随缘，先看看有没有有趣的人","yuan"]
   ]},
-  { t:"认识新朋友，你最自然的方式是？", opts:[
-    {s:"从一顿饭开始，吃什么不重要",k:"饭"},
-    {s:"一起运动最快，挥汗就熟了",k:"动"},
-    {s:"一起参加活动或逛逛，自然就近",k:"周"},
-    {s:"聊共同爱好，慢慢发现更多共鸣",k:"宠"},
-    {s:"先线上聊，感觉对了再见面",k:"缘"}
+  {t:"认识新朋友，你最自然的方式是？",o:[
+    ["从一顿饭开始，吃什么不重要","fan"],
+    ["一起运动最快，挥汗就熟了","yun"],
+    ["一起参加活动或逛逛，自然就近","zhou"],
+    ["聊共同爱好，慢慢发现更多共鸣","chong"],
+    ["先线上聊，感觉对了再见面","yuan"]
   ]},
-  { t:"你最怕哪种社交尴尬？", opts:[
-    {s:"一个人吃饭，太孤独了",k:"饭"},
-    {s:"运动没人督促，坚持不下去",k:"动"},
-    {s:"周末无聊但不知道找谁",k:"周"},
-    {s:"爱好太小众，根本没人懂",k:"宠"},
-    {s:"第一次见面不知道聊什么",k:"缘"}
+  {t:"你最怕哪种社交尴尬？",o:[
+    ["一个人吃饭，太孤独了","fan"],
+    ["运动没人督促，坚持不下去","yun"],
+    ["周末无聊但不知道找谁","zhou"],
+    ["爱好太小众，根本没人懂","chong"],
+    ["第一次见面不知道聊什么","yuan"]
   ]},
-  { t:"今天下午空了，你最想要的搭子局？", opts:[
-    {s:"去一家没吃过的餐厅探店",k:"饭"},
-    {s:"约人打羽毛球或跑步",k:"动"},
-    {s:"逛个展览或周末集市",k:"周"},
-    {s:"找人一起遛宠物或聊爱好",k:"宠"},
-    {s:"无主题闲逛，聊聊天就好",k:"缘"}
+  {t:"今天下午空了，你最想要的搭子局？",o:[
+    ["去一家没吃过的餐厅探店","fan"],
+    ["约人打羽毛球或跑步","yun"],
+    ["逛个展览或周末集市","zhou"],
+    ["找人一起遛宠物或聊爱好","chong"],
+    ["无主题闲逛，聊聊天就好","yuan"]
   ]},
-  { t:"你希望搭个伴帮你解决什么？", opts:[
-    {s:"一个人吃饭太孤独，想有人陪",k:"饭"},
-    {s:"运动缺个督促的伙伴",k:"动"},
-    {s:"周末不知道去哪也不知找谁",k:"周"},
-    {s:"想认识有共同爱好的同城朋友",k:"宠"},
-    {s:"想在这座城市多认识几个人",k:"缘"}
+  {t:"你希望搭个伴帮你解决什么？",o:[
+    ["一个人吃饭太孤独，想有人陪","fan"],
+    ["运动缺个督促的伙伴","yun"],
+    ["周末不知道去哪也不知找谁","zhou"],
+    ["想认识有共同爱好的同城朋友","chong"],
+    ["想在这座城市多认识几个人","yuan"]
   ]}
 ];
 
-var types = {
-  饭:{ name:"饭搭子", badge:"桌边社交型", desc:"你喜欢从一顿饭开始认识人。先聊吃什么，再聊剩下的生活——饭桌上的你，最松弛，也最真实。一句"一起吃饭吗"就能开始一段好关系。", traits:["探店达人","话题制造机","气氛担当","包容力强"] },
-  动:{ name:"运动搭子", badge:"行动派社交型", desc:"你觉得一起流汗是最好的破冰方式。比起聊天，你更愿意用行动建立连接——打完一场球，关系自然就近了。你要的是能让你动起来的人。", traits:["自律自驱","行动力强","耐力型选手","陪伴出真情"] },
-  周:{ name:"周末搭子", badge:"生活品质型", desc:"你需要有人把周末用得更有意思。你喜欢探索城市里那些值得去的地方，不一定深聊，但有人同行就会完全不同。你是把"随便逛逛"变成最好记忆的人。", traits:["探索欲强","生活感好","随性自在","质感搭子"] },
-  宠:{ name:"宠物搭子", badge:"共鸣深交型", desc:"你更喜欢从共同爱好出发，慢慢建立真正的连接。可能是宠物，可能是某个小众爱好，你不着急，但一旦找到共鸣就走得很近。你要的是懂你的人。", traits:["爱好鲜明","细腻共情","慢热真诚","圈子精选"] },
-  缘:{ name:"缘分搭子", badge:"随缘深情型", desc:"你不着急定义关系，先认识这座城市里有趣的人。你对人有天然的好奇，愿意给陌生关系一个机会。你找的不是搭子，是在对的时间遇见对的人。", traits:["开放好奇","随遇而安","深情隐藏","缘起有意思"] }
+var T={
+  fan:{name:"饭搭子",badge:"桌边社交型",desc:"你喜欢从一顿饭开始认识人。先聊吃什么，再聊剩下的生活——饭桌上的你，最松弛也最真实。一句"一起吃饭吗"就能开始一段好关系。",traits:["探店达人","话题制造机","气氛担当","包容力强"]},
+  yun:{name:"运动搭子",badge:"行动派社交型",desc:"你觉得一起流汗是最好的破冰方式。比起聊天，你更愿意用行动建立连接——打完一场球，关系自然就近了。你要的是能让你动起来的人。",traits:["自律自驱","行动力强","耐力型选手","陪伴出真情"]},
+  zhou:{name:"周末搭子",badge:"生活品质型",desc:"你需要有人把周末用得更有意思。你喜欢探索城市里那些值得去的地方，不一定深聊，但有人同行就会完全不同。你是把"随便逛逛"变成最好记忆的人。",traits:["探索欲强","生活感好","随性自在","质感搭子"]},
+  chong:{name:"宠物搭子",badge:"共鸣深交型",desc:"你更喜欢从共同爱好出发，慢慢建立真正的连接。可能是宠物，可能是某个小众爱好，你不着急，但一旦找到共鸣就走得很近。",traits:["爱好鲜明","细腻共情","慢热真诚","圈子精选"]},
+  yuan:{name:"缘分搭子",badge:"随缘深情型",desc:"你不着急定义关系，先认识这座城市里有趣的人。你对人有天然的好奇，愿意给陌生关系一个机会。你找的不是搭子，是在对的时间遇见对的人。",traits:["开放好奇","随遇而安","深情隐藏","缘起有意思"]}
 };
 
-var cur = 0, scores = {};
+var cur=0,sc={};
 
-function show(id) {
-  document.querySelectorAll('.screen').forEach(function(s){ s.className='screen'; });
-  document.getElementById(id).className = 'screen on';
+function go(id){
+  document.getElementById('p0').className = id==='p0' ? '' : 'hidden';
+  document.getElementById('p1').className = id==='p1' ? '' : 'hidden';
+  document.getElementById('p2').className = id==='p2' ? '' : 'hidden';
 }
 
-function startQuiz() {
-  cur = 0; scores = {};
-  renderQ();
-  show('s-quiz');
-}
-
-function renderQ() {
-  var q = qs[cur];
-  document.getElementById('pbar').style.width = (cur/qs.length*100)+'%';
-  document.getElementById('qlabel').textContent = 'Q'+(cur+1)+' / '+qs.length;
-  document.getElementById('qtext').textContent = q.t;
-  var letters = ['A','B','C','D','E'];
-  var html = '';
-  q.opts.forEach(function(o,i){
-    html += '<button type="button" class="opt" onclick="pick(\''+o.k+'\',this)">'
-      +'<span class="opt-letter">'+letters[i]+'</span>'
-      +'<span>'+o.s+'</span>'
-      +'</button>';
+function renderQ(){
+  var q=Q[cur],L=['A','B','C','D','E'];
+  document.getElementById('pf').style.width=(cur/Q.length*100)+'%';
+  document.getElementById('ql').textContent='Q'+(cur+1)+' / '+Q.length;
+  document.getElementById('qt').textContent=q.t;
+  var h='';
+  q.o.forEach(function(o,i){
+    h+='<button class="opt" data-k="'+o[1]+'"><span class="ol">'+L[i]+'</span><span>'+o[0]+'</span></button>';
   });
-  document.getElementById('opts').innerHTML = html;
-}
-
-function pick(k, btn) {
-  document.querySelectorAll('.opt').forEach(function(b){ b.className='opt'; });
-  btn.className = 'opt picked';
-  scores[k] = (scores[k]||0)+1;
-  setTimeout(function(){
-    cur++;
-    if(cur < qs.length){ renderQ(); }
-    else { showResult(); }
-  }, 350);
-}
-
-function showResult() {
-  var winner = Object.keys(scores).sort(function(a,b){ return scores[b]-scores[a]; })[0];
-  var r = types[winner];
-  document.getElementById('rtype').textContent = r.name;
-  document.getElementById('rbadge').textContent = r.badge;
-  document.getElementById('rdesc').textContent = r.desc;
-  document.getElementById('rtraits').innerHTML = r.traits.map(function(t){
-    return '<span class="trait">'+t+'</span>';
-  }).join('');
-  var qrEl = document.getElementById('qrbox');
-  qrEl.innerHTML = '';
-  try {
-    new QRCode(qrEl, {
-      text: window.location.href,
-      width: 68, height: 68,
-      colorDark: '#2C6249',
-      colorLight: '#FFFFFF',
-      correctLevel: QRCode.CorrectLevel.M
+  document.getElementById('opts').innerHTML=h;
+  document.getElementById('opts').querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var k=this.getAttribute('data-k');
+      this.className='opt ok';
+      sc[k]=(sc[k]||0)+1;
+      var self=this;
+      setTimeout(function(){cur++;cur<Q.length?renderQ():showResult();},350);
     });
-  } catch(e) {}
-  show('s-result');
+  });
 }
 
-function goWelcome(){ show('s-welcome'); }
+function showResult(){
+  var winner=Object.keys(sc).sort(function(a,b){return sc[b]-sc[a];})[0];
+  var r=T[winner];
+  document.getElementById('rt').textContent=r.name;
+  document.getElementById('rb').textContent=r.badge;
+  document.getElementById('rd').textContent=r.desc;
+  document.getElementById('ts').innerHTML=r.traits.map(function(t){return'<span class="tr">'+t+'</span>';}).join('');
+  go('p2');
+  loadQR();
+}
+
+function loadQR(){
+  var s=document.createElement('script');
+  s.src='https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
+  s.onload=function(){
+    try{
+      document.getElementById('qrbox').innerHTML='';
+      new QRCode(document.getElementById('qrbox'),{
+        text:window.location.href,width:68,height:68,
+        colorDark:'#2C6249',colorLight:'#FFFFFF',
+        correctLevel:QRCode.CorrectLevel.M
+      });
+    }catch(e){}
+  };
+  document.head.appendChild(s);
+}
+
+document.getElementById('startBtn').addEventListener('click',function(){
+  cur=0;sc={};renderQ();go('p1');
+});
+document.getElementById('retryBtn').addEventListener('click',function(){
+  go('p0');
+});
 </script>
 </body>
 </html>
